@@ -77,8 +77,6 @@ namespace {
 
             switch (op->getOpcode()) {
               case BinaryOperator::Add:
-                errs() << "ADD!\n";
-
                 if (auto* val = (dyn_cast<Constant>(lhs))) {
                   if (val->isZeroValue()) {
                     builder.CreateCall(addZero);
@@ -91,8 +89,6 @@ namespace {
                 break;
 
               case BinaryOperator::Sub:
-                errs() << "SUB!\n";
-
                 if (auto* val = dyn_cast<Constant>(rhs)) {
                   if (val->isZeroValue()) {
                     builder.CreateCall(subZero);
@@ -101,8 +97,6 @@ namespace {
                 break;
 
               case BinaryOperator::Mul:
-                errs() << "MUL!\n";
-
                 if (auto* val = (dyn_cast<Constant>(lhs))) {
                   if (val->isZeroValue()) {
                     builder.CreateCall(mulZero);
@@ -120,7 +114,6 @@ namespace {
 
               case BinaryOperator::UDiv:
               case BinaryOperator::SDiv:
-                errs() << "SDIV!\n";
                 if (auto* val = dyn_cast<Constant>(rhs)) {
                     if (val->isOneValue()) {
                       builder.CreateCall(divOne);
@@ -129,8 +122,6 @@ namespace {
                 break;
 
               case BinaryOperator::Or:
-                errs() << "OR!\n";
-
                 if (auto* val = (dyn_cast<Constant>(lhs))) {
                   if (val->isAllOnesValue()) {
                     builder.CreateCall(orNegOne);
@@ -153,8 +144,6 @@ namespace {
                 break;
 
               case BinaryOperator::And:
-                errs() << "AND!\n";
-
                 if (auto* val = (dyn_cast<Constant>(lhs))) {
                   if (val->isZeroValue()) {
                     builder.CreateCall(andZero);
@@ -172,14 +161,11 @@ namespace {
                       builder.CreateCall(andSelf);
                     }
                   }
-
                 }
 
                 break;
 
               case BinaryOperator::Xor:
-                errs() << "XOR!\n";
-
                 if (auto* val = (dyn_cast<Constant>(lhs))) {
                   if (val->isZeroValue()) {
                     builder.CreateCall(xorZero);
